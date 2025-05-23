@@ -2,19 +2,13 @@
 
 A remastered take on Vine, the same old short looping videos in a clean, minimalist view quick sharing.
 
----
-
 ## 🎬 What is Climb?
 
 Climb is a platform based on the old Vine, it supposed to be a addicting platform, that can give. *yes, addicting*
 
----
-
 ## 🌟 Why Climb?
 
 Because life is better when you quick share a gif.
-
----
 
 So, do you want to join the team today? just make a PR with a code correction!
 

@@ -36,6 +36,17 @@ app.locals.inlineCSS = function(filepath) {
     var css = `${mainCSS}${fileCSS}`
     return css
 };
+app.locals.fillcontent = function(list){
+    var content = '';
+    list.forEach(item=>{
+        if (item=='header'){
+            content+=`
+            <div id="header">this is a header</div>
+            `
+        }
+    })
+    return content
+}
 
 app.get('/',(req,res,next)=>{
     res.redirect('/home')

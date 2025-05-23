@@ -1,0 +1,32 @@
+{
+  "name": "climb",
+  "version": "1.0.0",
+  "description": "Vine remastered",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "test": " "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Null-Austin/Climb.git"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "vine",
+    "remaster"
+  ],
+  "author": "Null-Austin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Null-Austin/Climb/issues"
+  },
+  "homepage": "https://github.com/Null-Austin/Climb#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "path": "^0.12.7",
+    "sqlite3": "^5.1.7"
+  }
+}

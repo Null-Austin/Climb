@@ -19,12 +19,14 @@ function readFile(filepath){
         return '';
         }
 
-        return fs.readFileSync(fullPath, 'utf8');
+        return fs.readFileSync(fullPath, 'utf8').replaceAll('\n','')
     } catch (err) {
         console.error(`Failed to load from ${filepath}:`, err);
         return '';
     }
 }
+
+// webserver functions
 app.locals.inlineFile = function(filepath) {
     var file = readFile(filepath)
     return file
@@ -40,22 +42,21 @@ app.locals.fillcontent = function(list){
     var content = '';
     list.forEach(item=>{
         if (item=='header'){
-            content+=`
-            <div id="header">this is a header</div>
-            `
+            content+=`<div id="header">this is a header</div>`
         }
     })
     return content
 }
-
+app.use((req,res,next)=>{
+    logger.add(`${req.ip} accessed ${req.url}.`)
+    next()
+})
 app.get('/',(req,res,next)=>{
     res.redirect('/home')
 })
-
 app.get('/home',(req,res,next)=>{
     res.render('pages/index.ejs')
 })
-
 app.listen(port,err=>{
     console.log('http://localhost:'+port)
 })

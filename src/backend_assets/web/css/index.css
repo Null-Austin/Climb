@@ -36,23 +36,12 @@ img.post-image:hover{
     text-decoration: wavy;
 }
 @media (max-width: 600px) {
-    .post {
-        max-width: 98vw;
-        max-height: none;
-        padding: 10px;
-        margin: 0 auto;
+    div.post > img.post-image {
+        max-width: 450px;
+        max-height: 500px;
     }
-    .post > img {
-        max-width: 98vw;
-        height: auto;
-        max-height: 60vh;
-        display: block;
-        margin: 0 auto;
+    div {
+        background-color: pink;
     }
-    .post > hr {
-        width: 90%;
-    }
-    .post > span.user {
-        font-size: 1.1em;
-    }
+
 }

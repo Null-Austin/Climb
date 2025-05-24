@@ -3,7 +3,6 @@ body,html{
     padding: 0;
     margin: 0;
     width: 100%;
-    height: 100%;
 }
 #header{
     background-color: black;
@@ -38,7 +37,7 @@ body,html{
 #main>#side-bar{
     background-color: rgb(24, 24, 24);
     width: 14%;
-    height: 100%;
+    /*height: 100%;*/
     color: rgb(207, 207, 207);
     padding: 5px;
 }
@@ -50,6 +49,7 @@ body,html{
     width: 100%;
 }
 #main > #content {
+    justify-content: center;
     height: 100%;
     flex: 1;
     background-color: rgb(41, 41, 41);
@@ -58,6 +58,7 @@ body,html{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    align-items: flex-start;
 }
 
 #main>#content>*{

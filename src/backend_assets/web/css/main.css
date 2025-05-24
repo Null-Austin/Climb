@@ -29,7 +29,7 @@ body,html{
   font-variation-settings:
     "wdth" 100;
 }
-.ancizar-serif,h1,h2 {
+.ancizar-serif,h1,h2,.post>span.details,.post>span.user {
   font-family: "Ancizar Serif", serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -50,10 +50,19 @@ body,html{
     width: 100%;
 }
 #main>#content{
+    height: 100%;
     flex:1;
     background-color: rgb(41, 41, 41);
     color: white;
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 10px;
+}
+#main>#content>*{
+    flex-shrink: 0;
+    align-self: flex-start;
 }

@@ -11,8 +11,7 @@ class postManager {
 
   async getPosts() {
     console.log(this.file);
-    const data = await this.dbAll('SELECT userid AS user,content,image FROM eles;');
-    console.log(data);
+    const data = await this.dbAll('SELECT senderid AS userid,content,image FROM eles;');
     return data;
   }
 }

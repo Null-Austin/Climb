@@ -14,6 +14,9 @@ app.set('view engine', 'ejs');
 const postManager = require('./custom-libs/postManager')
 const posts = new postManager(path.join(__dirname,'database','posts','posts.db'))
 
+const userManager = require('./custom-libs/userManager')
+const users = new userManager(path.join(__dirname,'database','users','users.db'))
+
 // custom functions
 function isUrl(string) {
   return validator.isURL(string, { protocols: ['http','https'], require_protocol: true });
@@ -72,12 +75,27 @@ app.get('/api/',(req,res)=>{ //get the hell out of here script kiddies
     res.redirect('/home')
 })
 
-app.get('/api/fyp-get',async (req,res)=>{
-    var json = {"data":{
-        "posts":await posts.getPosts()
-    }}
-    res.json(json)
-})
+app.get('/api/fyp-get', async (req, res) => {
+    try {
+        const postsData = await posts.getPosts();
+        const usersMap = {};
+        for (const post of postsData) {
+            if (!usersMap[post.userid]) {
+                const user = await users.getUserFromId(post.userid);
+                usersMap[post.userid] = user ? user.username : null;
+            }
+        }
+        const formattedPosts = postsData.map(post => ({
+            userid: post.userid,
+            content: post.content,
+            image: post.image,
+            username: usersMap[post.userid]
+        }));
+        res.json({ data: { posts: formattedPosts } });
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 app.get('/api/:api',(req,res)=>{ //idk why the hell * wild card would not work.
     var json = {"data":{

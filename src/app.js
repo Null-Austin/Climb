@@ -42,13 +42,13 @@ app.locals.fillcontent = function(list){
     var content = '';
     list.forEach(item=>{
         if (item=='header'){
-            content+=`<div id="header">this is a header</div>`
+            content+=`<div id="header"><a href="/home">Eles</a></div>`
         }
     })
     return content
 }
 app.use((req,res,next)=>{
-    logger.add(`${req.ip} accessed ${req.url}.`)
+    console.log(req.url + ' was accessed')
     next()
 })
 app.get('/',(req,res,next)=>{

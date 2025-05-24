@@ -11,7 +11,17 @@ body,html{
 
     padding: 5px;
 }
-.open-sans{
+#header>a{
+    color: rgb(221, 221, 221);
+    text-decoration: none;
+}
+#header>a:hover{
+    text-decoration: underline;
+}
+#header>a::after,#header>a::before{
+    content: ' • ';
+}
+.open-sans,#header,body{
   font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -20,7 +30,7 @@ body,html{
     "wdth" 100;
 }
 
-.ancizar-serif {
+.ancizar-serif,h1,h2 {
   font-family: "Ancizar Serif", serif;
   font-optical-sizing: auto;
   font-weight: 400;

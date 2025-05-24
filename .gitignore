@@ -1,2 +1,5 @@
 /node_modules
 *.db
+*.log
+*.env
+*/user_assets/*

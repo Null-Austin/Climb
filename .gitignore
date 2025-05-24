@@ -2,4 +2,4 @@
 *.db
 *.log
 *.env
-*/user_assets/*
+/src/user_assets/*

@@ -104,6 +104,19 @@ app.get('/api/:api',(req,res)=>{ //idk why the hell * wild card would not work.
     res.status(404).json(json)
 })
 
+app.get('/img/priv/:img', (req, res) => {
+    const imgPath = path.join(__dirname, 'user_assets','PRIVATE',req.params.img);
+    if (fs.existsSync(imgPath)) {
+        res.sendFile(imgPath);
+    }
+})
+app.get('/img/:img', (req, res) => {
+    const imgPath = path.join(__dirname, 'user_assets','PUBLIC',req.params.img);
+    if (fs.existsSync(imgPath)) {
+        res.sendFile(imgPath);
+    }
+})
+
 app.listen(port,err=>{
     console.log('http://localhost:'+port)
 })

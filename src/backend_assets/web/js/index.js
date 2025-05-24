@@ -18,5 +18,9 @@ document.addEventListener('DOMContentLoaded',async (e)=>{
             const imgSrc = clone.querySelector('img').src;
             window.open(imgSrc, '_blank');
         });
+        clone.querySelector('img').addEventListener('error',()=>{
+            //delete the clone element
+            clone.remove()
+        })
     })
 })

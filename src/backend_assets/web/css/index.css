@@ -20,19 +20,22 @@ html, body {
 #post-template{
     display: none;
 }
-img.post-image,img.post-image:hover{
+*{
     transition: all 0.3s ease;
 }
-img.post-image:hover{
+.post:hover{ /*show animated gif instead of the photo*/
     transform: scale(1.05);
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 1);
-    filter: brightness(1.1);
-    -webkit-filter: brightness(1.1);
-    -moz-filter: brightness(1.1);
-    -o-filter: brightness(1.1);
-    -ms-filter: brightness(1.1);
+    img.post-image{
+        border-radius: 10px;
+        filter: brightness(1.1);
+        -webkit-filter: brightness(1.1);
+        -moz-filter: brightness(1.1);
+        -o-filter: brightness(1.1);
+        -ms-filter: brightness(1.1);
+    }
 }
 
 .post>span.user{

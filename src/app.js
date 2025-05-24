@@ -19,7 +19,7 @@ function readFile(filepath){
         return '';
         }
 
-        return fs.readFileSync(fullPath, 'utf8').replaceAll('\n','')
+        return fs.readFileSync(fullPath, 'utf8')
     } catch (err) {
         console.error(`Failed to load from ${filepath}:`, err);
         return '';
@@ -57,6 +57,18 @@ app.get('/',(req,res,next)=>{
 app.get('/home',(req,res,next)=>{
     res.render('pages/index.ejs')
 })
+// API stuff :/
+app.get('/api/',(req,res)=>{ //get the hell out of here script kiddies
+    res.redirect('/home')
+})
+
+app.get('/api/:api',(req,res)=>{
+    var json = {"data":{
+        "error":"no such page found"
+    }}
+    res.status(404).json(json)
+})
+
 app.listen(port,err=>{
     console.log('http://localhost:'+port)
 })

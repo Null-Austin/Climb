@@ -119,6 +119,10 @@ app.get('/img/:img', (req, res) => {
     }
 })
 
+app.use((req, res) => {
+    res.status(404).render('pages/404.ejs')
+})
+
 app.listen(port,err=>{
     console.log('http://localhost:'+port)
 })

@@ -3,7 +3,6 @@
 // configs for future
 const path = require('path')
 const fs = require('fs')
-const validator = require('validator');
 
 // config express
 const express = require('express')
@@ -18,11 +17,6 @@ const posts = new postManager(path.join(__dirname,'database','posts','posts.db')
 
 const userManager = require('./custom-libs/userManager')
 const users = new userManager(path.join(__dirname,'database','users','users.db'))
-
-// custom functions
-function isUrl(string) {
-  return validator.isURL(string, { protocols: ['http','https'], require_protocol: true });
-}
 
 //ejs functions
 function readFile(filepath){
@@ -43,20 +37,19 @@ function readFile(filepath){
 
 // webserver functions
 app.locals.inlineFile = function(filepath) {
-    var file = readFile(filepath)
-    return file
+    return readFile(filepath)
+
 };
 app.locals.inlineCSS = function(filepath) {
-    var mainCSS = readFile('css/main.css')
-    var fileCSS = readFile(`css/${filepath}`)
+    const mainCSS = readFile('css/main.css')
+    const fileCSS = readFile(`css/${filepath}`)
 
-    var css = `${mainCSS}${fileCSS}`
-    return css
+    return `${mainCSS}${fileCSS}`
 };
 app.locals.fillcontent = function(list){
-    var content = '';
+    let content = '';
     list.forEach(item=>{
-        if (item=='header'){
+        if (item==='header'){
             content+=`<div id="header"><a href="/home">Eles</a></div>`
         }
     })
@@ -66,10 +59,10 @@ app.use((req,res,next)=>{
     console.log(req.url + ' was accessed')
     next()
 })
-app.get('/',(req,res,next)=>{
+app.get('/',(req,res)=>{
     res.redirect('/home')
 })
-app.get('/home',(req,res,next)=>{
+app.get('/home',(req,res)=>{
     res.render('pages/index.ejs')
 })
 // API stuff :/
@@ -99,8 +92,8 @@ app.get('/api/fyp-get', async (req, res) => {
     }
 });
 
-app.get('/api/:api',(req,res)=>{ //idk why the hell * wild card would not work.
-    var json = {"data":{
+app.get('/api/:api',(req,res)=>{ //IDK why the hell * wild card would not work.
+    let json = {"data":{
         "error":"no such page found"
     }}
     res.status(404).json(json)
@@ -124,5 +117,6 @@ app.use((req, res) => {
 })
 
 app.listen(port,err=>{
+    console.log(err)
     console.log('http://localhost:'+port)
 })

@@ -9,6 +9,10 @@ const port = 3000;
 app.set('views', path.join(__dirname, '../src/backend_assets/web'));
 app.set('view engine', 'ejs');
 
+// custom libs
+const postManager = require('./custom-libs/postManager')
+const posts = new postManager(path.join(__dirname,'database','posts','posts.db'))
+
 //ejs functions
 function readFile(filepath){
     try {
@@ -62,7 +66,14 @@ app.get('/api/',(req,res)=>{ //get the hell out of here script kiddies
     res.redirect('/home')
 })
 
-app.get('/api/:api',(req,res)=>{
+app.get('/api/fyp-get',async (req,res)=>{
+    var json = {"data":{
+        "posts":await posts.getPosts()
+    }}
+    res.json(json)
+})
+
+app.get('/api/:api',(req,res)=>{ //idk why the hell * wild card would not work.
     var json = {"data":{
         "error":"no such page found"
     }}

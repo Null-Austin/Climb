@@ -1,6 +1,7 @@
 // configs for future
 const path = require('path')
 const fs = require('fs')
+const validator = require('validator');
 
 // config express
 const express = require('express')
@@ -12,6 +13,11 @@ app.set('view engine', 'ejs');
 // custom libs
 const postManager = require('./custom-libs/postManager')
 const posts = new postManager(path.join(__dirname,'database','posts','posts.db'))
+
+// custom functions
+function isUrl(string) {
+  return validator.isURL(string, { protocols: ['http','https'], require_protocol: true });
+}
 
 //ejs functions
 function readFile(filepath){

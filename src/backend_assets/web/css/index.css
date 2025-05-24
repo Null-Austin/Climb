@@ -16,10 +16,43 @@
 #post-template{
     display: none;
 }
+img.post-image:hover{
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 1);
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+    -moz-filter: brightness(1.1);
+    -o-filter: brightness(1.1);
+    -ms-filter: brightness(1.1);
+}
 
 .post>span.user{
     color: darkslategray;
     text-align: center;
     width: 100%;
     text-decoration: wavy;
+}
+@media (max-width: 600px) {
+    .post {
+        max-width: 98vw;
+        max-height: none;
+        padding: 10px;
+        margin: 0 auto;
+    }
+    .post > img {
+        max-width: 98vw;
+        height: auto;
+        max-height: 60vh;
+        display: block;
+        margin: 0 auto;
+    }
+    .post > hr {
+        width: 90%;
+    }
+    .post > span.user {
+        font-size: 1.1em;
+    }
 }

@@ -20,9 +20,11 @@ html, body {
 #post-template{
     display: none;
 }
+img.post-image,img.post-image:hover{
+    transition: all 0.3s ease;
+}
 img.post-image:hover{
     transform: scale(1.05);
-    transition: all 0.3s ease;
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 1);

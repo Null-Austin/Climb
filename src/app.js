@@ -118,22 +118,28 @@ app.get('/api/:api',(req,res)=>{ //IDK why the hell * wild card would not work.
     res.status(404).json(json)
 })
 
-app.get('/img/priv/:img', (req, res) => {
+app.get('/img/priv/:img', (req, res,next) => {
     const imgPath = path.join(__dirname, 'user_assets','PRIVATE',req.params.img);
     if (fs.existsSync(imgPath)) {
         res.sendFile(imgPath);
+    } else{
+        next()
     }
 })
-app.get('/img/:img', (req, res) => {
+app.get('/img/:img', (req, res,next) => {
     const imgPath = path.join(__dirname, 'user_assets','PUBLIC',req.params.img);
     if (fs.existsSync(imgPath)) {
         res.sendFile(imgPath);
+    } else{
+        next()
     }
 })
-app.get('/css/:sheet', (req, res) => {
+app.get('/css/:sheet', (req, res,next) => {
     const sheetPath = path.join(__dirname, 'backend_assets','PUBLIC',req.params.sheet);
     if (fs.existsSync(sheetPath)) {
         res.sendFile(sheetPath);
+    } else{
+        next()
     }
 })
 

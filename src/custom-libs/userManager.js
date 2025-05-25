@@ -1,8 +1,8 @@
 /*
 todo
 [ ] - create account system
-[ ] - verify email system
-[ ] - login/create session creator
+[ ] - verify email system, with resend
+[X] - login/create session creator
  */
 const sqlite3 = require('sqlite3')
 const crypto = require('crypto')

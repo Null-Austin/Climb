@@ -1,18 +1,8 @@
-const emails = require('./custom-libs/emailer_assistant');
-const email = new emails();
+const verifier = require('./custom-libs/email-verificator')
+const verify = new verifier
 
 async function run() {
-    try {
-        const x = await email.sendAuthEmail(
-            { display: 'Austin', email:'auth@climb.null-austin.me'},
-            '',
-            '746223',
-            'Test Auth Code for Emailer Assistant',
-            'Austin Moore'
-        )
-        console.log(x)
-    } catch (error) {
-        console.error("Failed to send email:", error);
-    }
+    let x = await verify.setCode('test@test.com',1)
+    console.log(x)
 }
 run();

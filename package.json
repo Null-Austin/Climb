@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Null-Austin/Climb#readme",
   "dependencies": {
+    "crypto": "^1.0.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "fs": "^0.0.1-security",

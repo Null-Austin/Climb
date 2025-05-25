@@ -13,12 +13,12 @@ class Emailer {
         try {
             return await this.resend.emails.send({
                 from: `${from.display} <${from.email}>`,
-                to: [to],
+                to: to,
                 subject: subject,
                 html: content
             });
         } catch (error) {
-            throw error;
+            return error;
         }
     }
 }

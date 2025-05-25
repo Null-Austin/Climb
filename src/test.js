@@ -1,9 +1,18 @@
-require('dotenv').config()
+const emails = require('./custom-libs/emailer_assistant');
+const email = new emails();
 
-const emails = require('./custom-libs/email')
-const email = new emails(process.env.RESEND_api_token)
-async function run(){
-    await email.sendEmail(
-        {"display":"austin","email":"auth@null-austin.me"},"fbfgb.test@inbox.testmail.app","Auth","Auth with this code:\n123456")
+async function run() {
+    try {
+        const x = await email.sendAuthEmail(
+            { display: 'Austin', email:'auth@climb.null-austin.me'},
+            '',
+            '746223',
+            'Test Auth Code for Emailer Assistant',
+            'Austin Moore'
+        )
+        console.log(x)
+    } catch (error) {
+        console.error("Failed to send email:", error);
+    }
 }
-run()
+run();

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="EN">
+<head>
+  <meta charset="UTF-8">
+  <title>Authentication Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7fafd;
+      margin: 0;
+      padding: 0;
+    }
+    .header-box {
+      background: #2d8cf0;
+      color: #fff;
+      padding: 24px 0;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .container {
+      background: #fff;
+      max-width: 480px;
+      margin: 40px auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(45,140,240,0.08);
+      padding: 32px 28px 24px 28px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #222;
+    }
+    .code {
+      color: #2d8cf0;
+      background: #f0f7ff;
+      padding: 16px 0;
+      border-radius: 6px;
+      font-size: 2.2rem;
+      letter-spacing: 4px;
+      text-align: center;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+    p {
+      color: #444;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-box">Climb</div>
+  <div class="container">
+    <h2>Hello, <%= display %>!</h2>
+    <p>We received a request to <%=reason%></p>
+    <p>Your authentication code is:</p>
+    <div class="code"><%= code %></div>
+    <p>If you did not request this, you can safely ignore this email. Please use this code to complete your authentication process.</p>
+  </div>
+</body>
+</html>

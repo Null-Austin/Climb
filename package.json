@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node ./src/app.js",
-    "test": "node ./src/test.js"
+    "test": "node ./src/test.js",
+    "dev": "node ./src/app.js --dev"
   },
   "repository": {
     "type": "git",

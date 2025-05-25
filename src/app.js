@@ -135,7 +135,7 @@ app.get('/img/:img', (req, res,next) => {
     }
 })
 app.get('/css/:sheet', (req, res,next) => {
-    const sheetPath = path.join(__dirname, 'backend_assets','PUBLIC',req.params.sheet);
+    const sheetPath = path.join(__dirname, 'backend_assets','web/css',req.params.sheet);
     if (fs.existsSync(sheetPath)) {
         res.sendFile(sheetPath);
     } else{

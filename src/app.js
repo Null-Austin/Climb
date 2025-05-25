@@ -1,10 +1,11 @@
 // app.js
 const dev = process.argv.includes('--dev')
-
 if(dev)console.log('Developer flag enabled');
+
 // configs for future
 const path = require('path')
 const fs = require('fs')
+const geoip = require('geoip-lite');
 
 // config express
 const express = require('express')
@@ -19,6 +20,9 @@ const posts = new postManager(path.join(__dirname,'database','posts','posts.db')
 
 const userManager = require('./custom-libs/userManager')
 const users = new userManager(path.join(__dirname,'database','users','users.db'))
+
+const snippets = require('./custom-libs/snippets')
+const snippet = new snippets()
 
 //ejs functions
 function readFile(filepath){
@@ -38,6 +42,34 @@ function readFile(filepath){
 }
 
 // webserver functions
+app.use((req,res,next)=>{
+    let rawIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    let ip = rawIp.split(',')[0]?.trim() || ''
+
+    let geo = geoip.lookup(ip);
+    try{
+        req.country = geo.country
+    } catch (e){
+        req.country = 'bypass'
+    }
+
+    if(geo){
+        snippet.addToDB(ip,geo.country,req.url)
+    }
+
+    if (geo && geo.country === 'US'){
+        next()
+    } else if(!geo){
+        next()
+        ip = '127.0.0.1'
+        req.country = 'bypass'
+    } else{
+        res.sendFile(path.join(__dirname, 'backend_assets/web/pages/restrictions/region.html'))
+    }
+
+    console.log(`Request from ${ip} (${req.country}) to ${req.url}`)
+})
+
 app.locals.inlineFile = function(filepath) {
     return readFile(filepath)
 
@@ -57,10 +89,10 @@ app.locals.fillcontent = function(list){
     })
     return content
 }
-app.use((req,res,next)=>{
-    console.log(req.url + ' was accessed')
-    next()
-})
+// app.use((req,res,next)=>{
+//     console.log(req.url + ' was accessed')
+//     next()
+// })
 if (dev){
     app.get('/dev/web/*page', (req, res) => {
         res.sendFile(path.join(__dirname,'backend_assets','web',req.params.page.join('/')))

@@ -1,11 +1,10 @@
+require('dotenv').config()
 const path = require('node:path')
 
-const userManager = require('./custom-libs/userManager')
-const users = new userManager(path.join(__dirname,'database','users','users.db'))
-
+const emails = require('./custom-libs/email')
+const email = new emails(process.env.RESEND_api_token)
 async function run(){
-    console.log('ran')
-    let user = await users.loginToSession('Austin','admin',false)
-    console.log(user)
+    await email.sendEmail(
+        {"display":"austin","email":"auth@null-austin.me"},"fbfgb.test@inbox.testmail.app","Auth","Auth with this code:\n123456")
 }
 run()

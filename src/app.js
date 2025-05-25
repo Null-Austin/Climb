@@ -1,5 +1,7 @@
 // app.js
+const dev = process.argv.includes('--dev')
 
+if(dev)console.log('Developer flag enabled');
 // configs for future
 const path = require('path')
 const fs = require('fs')
@@ -59,6 +61,23 @@ app.use((req,res,next)=>{
     console.log(req.url + ' was accessed')
     next()
 })
+if (dev){
+    app.get('/dev/web/*page', (req, res) => {
+        res.sendFile(path.join(__dirname,'backend_assets','web',req.params.page.join('/')))
+    })
+    app.get('/dev/tests', (req, res) => {
+        let content = '';
+        const files = fs.readdirSync(path.join(__dirname,'backend_assets','web','pages','tests'));
+        files.forEach(file=>{
+            content+=`<p><a href="tests/${file}">${file}</a></p>\n`
+        })
+        res.send(content)
+        console.log(content)
+    })
+    app.get('/dev/tests/:test', (req, res) => {
+        res.sendFile(path.join(__dirname,'backend_assets','web','pages','tests',req.params.test))
+    })
+}
 app.get('/',(req,res)=>{
     res.redirect('/home')
 })
@@ -109,6 +128,12 @@ app.get('/img/:img', (req, res) => {
     const imgPath = path.join(__dirname, 'user_assets','PUBLIC',req.params.img);
     if (fs.existsSync(imgPath)) {
         res.sendFile(imgPath);
+    }
+})
+app.get('/css/:sheet', (req, res) => {
+    const sheetPath = path.join(__dirname, 'backend_assets','PUBLIC',req.params.sheet);
+    if (fs.existsSync(sheetPath)) {
+        res.sendFile(sheetPath);
     }
 })
 

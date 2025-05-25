@@ -23,4 +23,7 @@ document.addEventListener('DOMContentLoaded',async (e)=>{
             clone.remove()
         })
     })
+
+    /* time for rendering the side bar */
+    const sideBar = document.getElementById('side-bar')
 })

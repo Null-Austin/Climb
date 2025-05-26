@@ -89,10 +89,7 @@ app.locals.fillcontent = function(list){
     })
     return content
 }
-// app.use((req,res,next)=>{
-//     console.log(req.url + ' was accessed')
-//     next()
-// })
+
 if (dev){
     app.get('/dev/web/*page', (req, res) => {
         res.sendFile(path.join(__dirname,'backend_assets','web',req.params.page.join('/')))
@@ -170,6 +167,14 @@ app.get('/css/:sheet', (req, res,next) => {
     const sheetPath = path.join(__dirname, 'backend_assets','web/css',req.params.sheet);
     if (fs.existsSync(sheetPath)) {
         res.sendFile(sheetPath);
+    } else{
+        next()
+    }
+})
+app.get('/js/:js', (req, res,next) => {
+    const jsPath = path.join(__dirname, 'backend_assets','web/js',req.params.js);
+    if (fs.existsSync(jsPath)) {
+        res.sendFile(jsPath);
     } else{
         next()
     }

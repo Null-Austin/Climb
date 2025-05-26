@@ -50,3 +50,8 @@ html, body {
         max-height: 500px;
     }
 }
+div#side-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}

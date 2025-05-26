@@ -1,0 +1,70 @@
+body {
+    background-color: rgb(24, 24, 24);
+}
+
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px 25px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background-color: rgb(32, 32, 32); /* darker */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    color: #fff;
+    backdrop-filter: blur(1px);
+    /* For Safari support */
+    -webkit-backdrop-filter: blur(1px);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+}
+
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.auth-container label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 2px solid #444;
+    border-radius: 8px;
+    background: #181818;
+    color: #fff;
+    transition: border-color 0.3s, background 0.3s;
+}
+
+.auth-container input[type="text"]:focus,
+.auth-container input[type="email"]:focus,
+.auth-container input[type="password"]:focus {
+    border-color: dodgerblue;
+    outline: none;
+    background: #222;
+    box-shadow: 0 0 5px dodgerblue;
+}
+
+.auth-container p {
+    text-align: center;
+    font-size: 0.95rem;
+    margin-top: 20px;
+}
+
+.auth-container hr {
+    margin: 25px 0;
+    border: none;
+    border-top: 1px solid #333;
+}

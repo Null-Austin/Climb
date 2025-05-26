@@ -92,7 +92,12 @@ app.locals.fillcontent = function(list){
 
 if (dev){
     app.get('/dev/web/*page', (req, res) => {
-        res.sendFile(path.join(__dirname,'backend_assets','web',req.params.page.join('/')))
+        const file = path.join(__dirname,'backend_assets','web',req.params.page.join('/'))
+        if (file.endsWith('.ejs')) {
+            res.render(req.params.page.join('/'))
+        } else{
+            res.sendFile(file)
+        }
     })
     app.get('/dev/tests', (req, res) => {
         let content = '';

@@ -1,23 +1,29 @@
-#login, #register {
-    background: dodgerblue;
+#register,#login,.button {
+    background: #0c4274;
     color: white;
     padding: 10px 20px;
     margin: 8px;
     border: none;
     border-radius: 12px;
-    cursor: pointer;
     font-size: 1.1rem;
     font-weight: 600;
     box-shadow: 0 4px 6px rgba(0,0,0,0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    cursor: progress;
+}
+#login:enabled, #register:enabled, button:enabled {
+    background: dodgerblue;
+    cursor: pointer;
 }
 
 #login:hover, #register:hover {
-    transform: scale(1.1);
+    transform: scale(1.01);
     box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-    background-color: #1e90ff; /* a bit darker */
+    background-color: #0a3963; /* a bit darker */
 }
+#login:hover:enabled,#register:hover:enabled{
 
+}
 #login:focus, #register:focus {
     outline: 2px solid #005fcb;
     outline-offset: 3px;

@@ -7,22 +7,21 @@
     <link rel="stylesheet" href="/css/auth.css" />
     <link rel="stylesheet" href="/css/buttons.css" />
     <link rel="stylesheet" href="/css/main.css">
+    <script src='/js/auth/user.js'></script>
 </head>
 <body>
 <div class="post auth-container">
-    <h2>Create Account</h2>
+    <h2>Login Account</h2>
     <form id="signup-form">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required placeholder="Enter username" />
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required placeholder="Enter your email" />
+        <label for="info">Email or Username</label>
+        <input type="text" id="info" name="info" required placeholder="Enter your username or password" />
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required placeholder="Create a password" />
-        <button type="submit" id="register">Sign Up</button>
+        <button type="submit" id="login" disabled>Logn</button>
     </form>
     <hr />
     <p>
-        Already have an account? <button id="login" onclick="alert('Redirect to login page!')">Log In</button>
+        No Account? <button id="register" disabled>Register</button>
     </p>
 </div>
 </body>

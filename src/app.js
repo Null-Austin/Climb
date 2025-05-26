@@ -118,6 +118,15 @@ app.get('/',(req,res)=>{
 app.get('/home',(req,res)=>{
     res.render('pages/index.ejs')
 })
+
+// auth stuff
+app.get('/auth/login',(req,res)=>{
+    res.render('pages/auth/login.ejs')
+})
+app.get('/auth/signup',(req,res)=>{
+    res.render('pages/auth/signup.ejs')
+})
+
 // API stuff :/
 app.get('/api/',(req,res)=>{ //get the hell out of here script kiddies
     res.redirect('/home')
@@ -152,32 +161,32 @@ app.get('/api/:api',(req,res)=>{ //IDK why the hell * wild card would not work.
     res.status(404).json(json)
 })
 
-app.get('/img/priv/:img', (req, res,next) => {
-    const imgPath = path.join(__dirname, 'user_assets','PRIVATE',req.params.img);
+app.get('/img/priv/*img', (req, res,next) => {
+    const imgPath = path.join(__dirname, 'user_assets','PRIVATE',req.params.img.join('/'));
     if (fs.existsSync(imgPath)) {
         res.sendFile(imgPath);
     } else{
         next()
     }
 })
-app.get('/img/:img', (req, res,next) => {
-    const imgPath = path.join(__dirname, 'user_assets','PUBLIC',req.params.img);
+app.get('/img/*img', (req, res,next) => {
+    const imgPath = path.join(__dirname, 'user_assets','PUBLIC',req.params.img.join('/'));
     if (fs.existsSync(imgPath)) {
         res.sendFile(imgPath);
     } else{
         next()
     }
 })
-app.get('/css/:sheet', (req, res,next) => {
-    const sheetPath = path.join(__dirname, 'backend_assets','web/css',req.params.sheet);
+app.get('/css/*sheet', (req, res,next) => {
+    const sheetPath = path.join(__dirname, 'backend_assets','web/css',req.params.sheet.join('/'));
     if (fs.existsSync(sheetPath)) {
         res.sendFile(sheetPath);
     } else{
         next()
     }
 })
-app.get('/js/:js', (req, res,next) => {
-    const jsPath = path.join(__dirname, 'backend_assets','web/js',req.params.js);
+app.get('/js/*js', (req, res,next) => {
+    const jsPath = path.join(__dirname, 'backend_assets','web/js',req.params.js.join('/'));
     if (fs.existsSync(jsPath)) {
         res.sendFile(jsPath);
     } else{
@@ -190,6 +199,6 @@ app.use((req, res) => {
 })
 
 app.listen(port,err=>{
-    console.log(err)
+    if (err) throw err;
     console.log('http://localhost:'+port)
 })

@@ -42,6 +42,8 @@ function readFile(filepath){
 }
 
 // webserver functions
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use((req,res,next)=>{
     let rawIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     let ip = rawIp.split(',')[0]?.trim() || ''
@@ -126,6 +128,19 @@ app.get('/auth/login',(req,res)=>{
 app.get('/auth/signup',(req,res)=>{
     res.render('pages/auth/signup.ejs')
 })
+// For whatever dev is unfortunately reading this, Please add some of your tears to the stew
+/*app.post('/auth/login', (req, res) => {
+    let body = req.body
+    if (!(body.info && body.password)) res.send('screw off')
+    let identifier = body.info
+    let password = body.password
+
+    //users
+})
+app.post('/auth/signup', (req, res) => {
+    let body = req.body
+    res.redirect('/auth/signup')
+})*/
 
 // API stuff :/
 app.get('/api/',(req,res)=>{ //get the hell out of here script kiddies

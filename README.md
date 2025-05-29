@@ -1,4 +1,5 @@
 # 🪜 Climb
+![Coding Time](https://hackatime-badge.hackclub.com/U08SKE8JU5S/Climb)
 
 A remastered take on Vine, the same old short looping videos in a clean, minimalist view quick sharing.
 
@@ -14,7 +15,7 @@ So, do you want to join the team today? just make a PR with a code correction!
 
 ## Install 🤖
 This project is not ready to be used. But if you want to install it, here are the steps:
-1. First we will install the github repo, which you may do here:
+1. First we will install the github repo and some packages, which you may do here:
 ```bash
 git clone https://github.com/Null-Austin/Climb.git
 ```
